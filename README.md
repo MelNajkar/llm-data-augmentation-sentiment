@@ -1,63 +1,93 @@
-# LLM-Based Data Augmentation for Sentiment Classification
-
-Using Large Language Models (Gemini) to generate synthetic Yelp reviews for improving text classification under low-resource conditions.
+# LLM-Based Synthetic Data Augmentation for Low-Resource Sentiment Classification
 
 ## Overview
-This project investigates whether augmenting small, balanced sentiment datasets with LLM-generated examples improves classifier performance. Experiments compare baseline models trained on real data only vs. models trained on real + synthetic data.
 
-## Key Features
-- Synthetic data generation using Google Gemini API
-- Sentiment classification on Yelp reviews (positive/negative)
-- Multiple prompting strategies for data augmentation
-- TF-IDF feature extraction
-- Linear SVM classifier
-- Performance evaluation across different training set sizes
+Training NLP models with limited labeled data often leads to poor generalization and unstable performance. In many real-world scenarios, collecting annotated text data is expensive and time-consuming.
 
-## Technologies
-- Python
-- Google Gemini API
-- scikit-learn
-- TF-IDF vectorization
-- Pandas, NumPy
-- Jupyter Notebook
-
-## Methodology
-1. Subsample balanced Yelp review dataset to simulate low-resource scenario
-2. Design LLM prompts to generate synthetic reviews
-3. Train Linear SVM on:
-   - Real data only (baseline)
-   - Real + synthetic data (augmented)
-4. Evaluate using accuracy, macro F1-score, and per-class metrics
-
-## Key Findings
-- Synthetic augmentation provides 6-7% improvement with only 20 samples per class
-- Benefits diminish as real training data increases beyond 200 samples
-- Most effective in extremely low-resource settings
-
-## Files
-- `llm-data-augmentation-sentiment.ipynb` - Main implementation
-- `nlp-Najkar.pdf` - Detailed technical report
-
-## Requirements
-```
-datasets
-scikit-learn
-google-generativeai
-pandas
-numpy
-matplotlib
-```
-
-## Note
-Gemini API key required for synthetic data generation.
-```
+This project investigates whether Large Language Models (Google Gemini) can generate synthetic training examples to improve sentiment classification performance under low-resource conditions.
 
 ---
 
-**4. For Upwork portfolio:**
+## Objective
 
-**Project title:** "LLM Data Augmentation for NLP"
+Evaluate the effectiveness of LLM-generated synthetic Yelp reviews in improving classification performance when only a small number of real training samples are available.
 
-**Description:**
-```
-Research project using Large Language Models (Google Gemini) to generate synthetic training data for sentiment classification. Designed prompting strategies, implemented data augmentation pipeline, and evaluated performance improvements in low-resource settings. Achieved 6-7% accuracy improvement with small datasets using Linear SVM and TF-IDF features.
+---
+
+## Methodology
+
+A balanced subset of the Yelp Review dataset was used to simulate low-resource scenarios.
+
+### Experimental Pipeline
+
+1. Subsample the dataset to create small balanced training sets (20–200 samples per class)
+2. Design structured prompts for Google Gemini to generate synthetic positive and negative reviews
+3. Augment the real dataset with generated synthetic samples
+4. Convert text into numerical features using **TF-IDF vectorization**
+5. Train a **Linear Support Vector Machine (SVM)** classifier
+6. Evaluate performance using:
+   - Accuracy
+   - Macro F1-score
+   - Per-class precision and recall
+
+Baseline models trained on real data only were compared against augmented models trained on real + synthetic data.
+
+---
+
+## Results
+
+- Synthetic augmentation improved accuracy by approximately **6–7%** when only 20 samples per class were available.
+- Performance gains diminished as the real training data increased beyond 200 samples.
+- The approach is most effective in extremely low-resource settings.
+
+These findings indicate that LLM-based data augmentation is a practical strategy when labeled data is scarce.
+
+---
+
+## Tech Stack
+
+- Python
+- scikit-learn
+- Google Gemini API
+- TF-IDF vectorization
+- Pandas
+- NumPy
+- Matplotlib
+- Jupyter Notebook
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/llm-data-augmentation-sentiment.git
+cd llm-data-augmentation-sentiment
+
+# Install dependencies:
+pip install -r requirements.txt
+
+# Set your Gemini API key:
+export GOOGLE_API_KEY="your_api_key_here"
+
+## Usage
+Run the main notebook:
+
+llm-data-augmentation-sentiment.ipynb
+
+## Project Structure
+
+.
+├── llm-data-augmentation-sentiment.ipynb
+├── nlp-Najkar.pdf
+├── requirements.txt
+└── README.md
+
+## Future Improvements:
+
+Compare multiple LLM providers (Gemini vs GPT vs open-source models)
+Replace TF-IDF with transformer-based embeddings
+Automate prompt optimization
+Evaluate robustness under domain shift
+Convert notebook into a modular Python package
