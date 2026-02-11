@@ -64,30 +64,44 @@ Clone the repository:
 ```bash
 git clone https://github.com/yourusername/llm-data-augmentation-sentiment.git
 cd llm-data-augmentation-sentiment
+```
 
 # Install dependencies:
+```bash
 pip install -r requirements.txt
+```
 
 # Set your Gemini API key:
+```bash
 export GOOGLE_API_KEY="your_api_key_here"
+```
+
+---
 
 ## Usage
 Run the main notebook:
-
+```
 llm-data-augmentation-sentiment.ipynb
+```
+
+---
 
 ## Project Structure
 
+```
 .
 ├── llm-data-augmentation-sentiment.ipynb
 ├── nlp-Najkar.pdf
 ├── requirements.txt
 └── README.md
+```
+
+---
 
 ## Future Improvements:
 
-Compare multiple LLM providers (Gemini vs GPT vs open-source models)
-Replace TF-IDF with transformer-based embeddings
-Automate prompt optimization
-Evaluate robustness under domain shift
-Convert notebook into a modular Python package
+- Compare multiple LLM providers (Gemini vs GPT vs open-source models)
+- Replace TF-IDF with transformer-based embeddings
+- Automate prompt optimization
+- Evaluate robustness under domain shift
+- Convert notebook into a modular Python package
